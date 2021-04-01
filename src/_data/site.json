@@ -1,8 +1,8 @@
 {
-  "site_name": "Starter",
-  "title": "Eleventy Starter Boilerplate",
-  "description": "Starter code for your 11ty blog Boilerplate",
-  "url": "https://example.com",
-  "locale": "en",
-  "author": "Anonymous"
+  "site_name": "Блог — mprog54",
+  "title": "Блог mprog54",
+  "description": "Всякая всячина и щепотка кода",
+  "url": "https://eleventy-1.netlify.app",
+  "locale": "ru",
+  "author": "mprog54"
 }
