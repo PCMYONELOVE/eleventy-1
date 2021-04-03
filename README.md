@@ -1,4 +1,4 @@
-# Мой блог (base on Eleventy)
+# Мой блог (based on Eleventy)
 
 <p align="center">
   <a href="#"><img src="preview.png?raw=true" alt="Главная страница"></a>
