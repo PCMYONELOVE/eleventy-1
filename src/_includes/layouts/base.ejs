@@ -25,7 +25,7 @@
       <link rel="search" type="application/opensearchdescription+xml" title="Search in <%= site.site_name %>" href="<%= site.url %>/opensearch/1.1/document" />
     -->
 
-    <link rel="image_src" href="/assets/images/proxy-img.png" />
+    <link rel="image_src" href="<%= site.url %>/assets/images/proxy-img.png" />
 
     <meta name="renderer" content="webkit" />
     <meta name="force-rendering" content="webkit" />
@@ -77,8 +77,8 @@
     <meta name="twitter:title" content="<%= site.site_name %>" />
     <meta name="twitter:url" content="<%= `${site.url}${page.url}` %>" />
     <meta name="twitter:description" content="<%= (!!locals.description) ? description : site.description %>" />
-    <meta property="og:image" content="/assets/images/proxy-img.png" />
-    <meta property="og:image:secure_url" content="/assets/images/proxy-img.png" />
+    <meta property="og:image" content="<%= site.url %>/assets/images/proxy-img.png" />
+    <meta property="og:image:secure_url" content="<%= site.url %>/assets/images/proxy-img.png" />
     <!-- <meta property="fb:admins" content="" />
     <meta property="fb:app_id" content="" /> -->
 
