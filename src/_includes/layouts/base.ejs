@@ -1,28 +1,128 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
+<html lang="<%= site.locale %>" prefix="og: http://ogp.me/ns# website: http://ogp.me/ns/website# ya: https://webmaster.yandex.ru/vocabularies/">
+  <head profile="http://gmpg.org/xfn/11">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-    <link rel="icon" href="/favicon.ico" />
+
     <title><%= title %></title>
-    <meta
-      name="description"
-      content="<%= (!!locals.description) ? description : site.description %>"
-    />
+
+    <meta name="robots" content="index,follow" />
+    <meta name="format-detection" content="telphone=no, email=no" />
+
+    <!-- test -->
+    <meta name="description" itemprop="description" content="<%= (!!locals.description) ? description : site.description %>" />
+    <meta name="keywords" content="блог mprog54, мой блог" />
+    <meta name="language" content="<%= site.locale %>" />
     <meta name="author" content="<%= site.author %>" />
-    <meta property="og:title" content="<%= title %>" />
-    <meta
-      property="og:description"
-      content="<%= (!!locals.description) ? description : site.description %>"
-    />
-    <meta property="og:locale" content="<%= site.locale %>" />
-    <meta property="og:site_name" content="<%= site.site_name %>" />
+    <meta name="copyright" content="(c) <%= site.author %>">
+
+    <link rel="canonical" href="<%= `${site.url}${page.url}` %>" />
+    <!-- <link rel="amphtml" href="<%= site.url %>/amp/" /> -->
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="profile" href="http://gmpg.org/xfn/11" />
+    <!--
+      <link rel="search" type="application/opensearchdescription+xml" title="Search in <%= site.site_name %>" href="<%= site.url %>/opensearch/1.1/document" />
+    -->
+
+    <link rel="image_src" href="/assets/images/proxy-img.png" />
+
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta name="theme-color" content="#858585" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/x-icon" href="/assets/images/favicon.ico" />
+    <link rel="icon" sizes="192x192" href="/assets/images/apple-touch-icon.png" />
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/images/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon-16x16.png" />
+    <link rel="manifest" href="/assets/images/site.webmanifest" />
+    <link rel="mask-icon" href="/assets/images/safari-pinned-tab.svg" color="#5bbad5" />
+    <meta name="msapplication-TileColor" content="#da532c" />
+    <link rel="apple-touch-icon-precomposed" href="/assets/images/apple-touch-icon.png" />
+    <meta name="msapplication-TileImage" content="/assets/images/apple-touch-icon.png" />
+    <link rel="shortcut icon" href="/assets/images/favicon-32x32.png" />
+
+    <!--[if IE]><link rel="shortcut icon" href="/assets/images/favicon-32x32.png"><![endif]-->
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="#da532c" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="yes" name="apple-touch-fullscreen" />
+    <meta content="telephone=no" name="format-detection" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+
+    <!-- Search engines -->
+    <meta name="google-site-verification" content="crorwv6mHNBeju6D4KEIpxwsIBr9mwvruFMhWzkerlg" />
+    <meta name="yandex-verification" content="d43588178784bff3" />
+    <meta name="wot-verification" content="ae7a7711c663e333accb" />
+
+    <!-- Open Graph -->
+    <meta property="og:locale" content="<%= site.locale %>" /> <!-- ru_RU -->
     <% if (locals.tags == "posts") { %>
     <meta property="og:type" content="article" />
     <meta property="article:published_time" content="<%= date.toISOString() %>" />
+    <% } else { %>
+    <meta property="og:type" content="website" />
+    <% } %>
+    <meta property="og:title" content="<%= title %>" />
+    <meta property="og:description" content="<%= (!!locals.description) ? description : site.description %>" />
+    <meta property="og:site_name" content="<%= site.site_name %>" />
+    <meta property="og:url" content="<%= `${site.url}${page.url}` %>" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <!-- <meta name="twitter:site" content="@mprog54" /> -->
+    <meta name="twitter:title" content="<%= site.site_name %>" />
+    <meta name="twitter:url" content="<%= `${site.url}${page.url}` %>" />
+    <meta name="twitter:description" content="<%= (!!locals.description) ? description : site.description %>" />
+    <meta property="og:image" content="/assets/images/proxy-img.png" />
+    <meta property="og:image:secure_url" content="/assets/images/proxy-img.png" />
+    <!-- <meta property="fb:admins" content="" />
+    <meta property="fb:app_id" content="" /> -->
+
+    <!-- RSS Feed -->
+    <!-- <link rel="alternate" type="application/rss+xml" title="<%= site.site_name %> | RSS Feed" href="<%= site.url %>/feed/" />
+    <link rel="alternate" type="application/rss+xml" title="<%= site.site_name %> | Comments Feed" href="<%= site.url %>/comments/feed/" />
+    <link rel="alternate" type="application/atom+xml" title="<%= site.site_name %> | Atom Feed" href="<%= site.url %>/feed/atom/" /> -->
+
+    <!-- Preconnect -->
+    <link href='https://cdn.jsdelivr.net' rel='preconnect' />
+    <link href='https://www.googletagmanager.com' rel='preconnect' />
+    <link rel='dns-prefetch' href='//cdn.jsdelivr.net' />
+
+    <link rel='stylesheet' id='jquery-ui-css-css' href='https://cdn.jsdelivr.net/npm/jquery-ui-css@1.11.5/jquery-ui.min.css' type='text/css' media='' />
+    <link rel='stylesheet' id='fontawe-css' href='https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css' type='text/css' media='all' />
+    <link rel='stylesheet' id='kratos-css' href='/assets/styles/kratos.min.css' type='text/css' media='all' />
+
+    <style>
+      #offcanvas-menu{background:rgba(42,42,42,.9)}@media(max-width:768px){#kratos-header-section{background:rgba(22,23,26,.9)}}@media(min-width:768px){.color-logo{display:none}.affix{top:61px}}
+      @font-face{font-family:asinastra;src:url('/assets/fonts/asinastra.font.otf') format('opentype')}
+      @font-face{font-family:'PT Serif';font-style:normal;font-weight:400;src:local('PT Serif'),local('PTSerif-Regular'),url('/assets/fonts/pt-serif.woff') format('woff'),url('/assets/fonts/pt-serif.ttf') format('truetype')}html{line-height:1.15;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}[type=reset],[type=submit],button,html [type=button]{-webkit-appearance:button;-moz-appearance:button;appearance:button}#main > article::before,#main > noindex > article::before{display:block;width:100%;height:.1875rem;background-image:-webkit-linear-gradient(left,#73D2F6,#08C 22%,#7FC400 36%,#FFD583 48%,#FFB21E 63%,#FF4D4D 76%);background-image:linear-gradient(to right,#73D2F6,#08C 22%,#7FC400 36%,#FFD583 48%,#FFB21E 72%,#FF4D4D 89%);content:'';-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0}#kratos-header-section::before{display:block;width:100%;height:.1875rem;background-image:-webkit-linear-gradient(left,#73D2F6,#08C 22%,#7FC400 36%,#FFD583 48%,#FFB21E 63%,#FF4D4D 76%,#503873);background-image:linear-gradient(to right,#73D2F6,#08C 22%,#7FC400 36%,#FFD583 48%,#FFB21E 63%,#FF4D4D 76%,#503873);content:'';-webkit-flex-shrink:0;-ms-flex-negative:0;flex-shrink:0}.kratos-post-content img{z-index:3!important}.random-quote2,.random-quote{height:auto!important;min-height:100px!important}.mini-post p{font:unset!important}.mini-post span{font-family:asinastra!important;font-size:16px}#ardtdw-sitewidget{z-index:888!important}.downbtn.videobtn{padding:10px 26px;border:1px solid #fb4711;background:#f44c50;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;overflow:hidden;width:100%;display:block;padding-top:5px;padding-bottom:5px}.downbtn.videobtn:hover,.downbtn.videobtn:focus{background:#E91E63}.color-logo{text-overflow:ellipsis;white-space:nowrap;overflow:hidden;z-index:3;padding:5px!important}.hide_notice{margin-top:15px}.kratos-entry-header-new{overflow:hidden;text-overflow:ellipsis; overflow:hidden;max-height:50px}.video-container:not(:first-child){margin-bottom:20px}.video-container>video{width:100%;height:auto;display:block;min-height:300px}.b-lazy.loading{background:url(/assets/imageslazy-loading.jpg) no-repeat;background-color:white;background-size:contain;background-position:center;animation:showfadeout 3s 1;animation-fill-mode:forwards;animation-delay:1s}.video-container{position:relative;width:100%!important;height:auto!important;min-height:100px!important}.video-container>.info-overlay{display:none}.video-container>.info-overlay.error{display:block;background:url(/assets/images/lazy-error-load.jpg) no-repeat;background-color:white;background-size:contain;background-position:center;animation:showfadeout 3s 1;animation-fill-mode:forwards;animation-delay:1s;z-index:1!important}.el-hidden{display:none}.share-plain.vkcom{border-color:#2980b9!important;color:#2980b9!important}.share-plain.okru{border-color:#e87461!important;color:#e87461!important}.kratos-post-content p{text-align:right;text-align:left;font:400 20px/28px 'PT Serif',Georgia,Times,serif;-webkit-flex-basis:400px;-ms-flex-preferred-size:400px;flex-basis:400px;-webkit-box-flex:1;-webkit-flex-grow:1;-ms-flex-positive:1;flex-grow:1;max-width:100%;word-wrap:break-word;letter-spacing:normal;overflow:hidden}.random-quote2 p{text-align:center}.widget_kratos_about .name{font-size:21px;font-weight:400;text-align:center;display:block}.kratos-post-inner-new{margin-left:255px;height:160px;text-align:left;padding:21px 20px 0 3px;overflow:hidden;text-overflow:ellipsis}.comment-body p{word-wrap:break-word;word-break:break-word}.panel p{text-align:left}.kratos-entry-title{word-wrap:break-word;margin:0px 0 24px;font-weight:700;line-height:42px;letter-spacing:-.95px}.kratos-post-content a:hover,.comment-body a:hover{text-decoration:underline;text-decoration-style:dashed;text-decoration-color:#4c4c4c}.kratos-entry-content-new p{font-size:10px;font:400 18px/26px 'PT Serif',Georgia,Times,serif}@media (max-width:768px){html body a{text-decoration:none;outline:none;-webkit-tap-highlight-color:rgba(0,0,0,0)}html body a:link,html body a:active,html body a:hover,html body a:visited{text-decoration:none}}@keyframes showfadeout{0%{opacity:0},100%{opacity:1}}
+        .kratos-post-content, .kratos-post-content-l{
+          word-break: break-all!important;
+        }
+    </style>
+
+    <link rel="preload" type="text/css" href="/assets/styles/cookieconsent.min.css" as="style" onload="this.rel='stylesheet'">
+    <noscript>
+      <link rel="stylesheet" type="text/css" href="/assets/styles/cookieconsent.min.css">
+    </noscript>
+    <link rel="preload" type="text/css" href="/assets/styles/balloon.min.css" as="style" onload="this.rel='stylesheet'">
+    <noscript>
+      <link rel="stylesheet" type="text/css" href="/assets/styles/balloon.min.css">
+    </noscript>
+
+    <link rel='stylesheet' id='dplayer-css' href='https://cdnjs.cat.net/ajax/libs/dplayer/1.6.1/DPlayer.min.css' type='text/css' media='' />
+
+    <!-- /test -->
+
+    <script>
+    var dPlayers = [];var dPlayerOptions = [];
+    </script>
+
+    <% if (locals.tags == "posts") { %>
     <script type="application/ld+json">
       {
         "description": "<%= (!!locals.description) ? description : site.description %>",
@@ -46,7 +146,12 @@
         "@context": "http://schema.org"
       }
     </script>
-    <% } %><%- include('webpack.ejs') %> <% if (page.url == "/") { %>
+    <% } %>
+
+    <%- include('webpack.ejs') %>
+
+    <% if (page.url == "/") { %>
+    <!-- For Netlify -->
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
     <script>
       if (window.netlifyIdentity) {
@@ -60,40 +165,228 @@
       }
     </script>
     <% } %>
+
+    <script async type="text/javascript" id="">
+    var NexT=window.NexT|| {},CONFIG= {root:"/",scheme:"Pisces",version:"0.0.25",sidebar: {position: "right", display: "always", offset: 52, b2t: !1, scrollpercent: !1, onmobile: !1
+    },since:"2/8/2018 ??:??:00",onlineAPI:"wss://api.prprpr.me/online/",site: {title: "<%= site.author %>", subtitle: "", author: "<%= site.author %>"
+    },
+
+
+    favicon: {visibilitychange: !0, def: "/assets/images/favicon.ico", hidden: "/assets/images/failure.ico", show_text: "(/≧▽≦/)Эй！ Хорошо что вернулся!", hide_text: "❌ Эй, что-то сломалось!" //(● - ●)
+    }}
+  </script>
+
   </head>
 
-  <body class="antialiased w-full text-gray-700">
-    <div class="max-w-screen-md mx-auto">
-      <div class="border-b border-gray-300">
-        <div class="pt-16 pb-8">
-          <h1 class="font-semibold text-3xl text-gray-800"><%= site.title %></h1>
-          <div class="text-xl"><%= site.description %></div>
+  <body itemscope="itemscope" itemtype="http://schema.org/WebPage">
+    <div id="kratos-wrapper">
+      <div id="kratos-page">
+        <div id="kratos-header">
+          <div class="nav-toggle"><a class="kratos-nav-toggle js-kratos-nav-toggle"><i></i></a>
+          </div>
+          <header id="kratos-header-section" role="banner" itemscope="itemscope" itemtype="http://schema.org/WPHeader">
+            <div class="container">
+              <div class="nav-header">
+                <div class="color-logo">
+                  <a href="http://blog.junior.moe">
+                    <span style="color: cyan;">>_</span> <%= site.site_name %>
+                  </a>
+                </div>
+                <nav id="kratos-menu-wrap" role="navigation" itemscope="itemscope" itemtype="http://scheme.org/SiteNavigationElement" class="menu-verhnee-menyu-container">
+                  <ul id="kratos-primary-menu" class="sf-menu">
+                    <li class="current-menu-item">
+                      <a href="<%= site.url %>" data-balloon="😃 Первая" data-balloon-pos="right"><i class="fa fa-home"></i> Первая</a>
+                    </li>
+                    <li>
+                      <a href="<%= site.url %>/sample-page-jd-o-sebe" data-balloon="😃 О себе" data-balloon-pos="right"><i class="fa fa-user"></i> О себе</a>
+                    </li>
+                    <li><a href="#"><i class="fa fa-bars"></i> Категории</a>
+                      <ul class="sub-menu">
+                        <li><a href="<%= site.url %>/category/vlogoblog/" data-balloon="😃 VLOGоBlog" data-balloon-pos="right">VLOGоBlog</a>
+                        </li>
+                        <li><a href="<%= site.url %>/category/miniproject/" data-balloon="😃 Минипроджект" data-balloon-pos="right">Минипроджект</a>
+                        </li>
+                        <li><a href="<%= site.url %>/category/dev/" data-balloon="😃 Запилы ( DEV )" data-balloon-pos="right">Запилы ( DEV )</a>
+                        </li>
+                        <li><a href="<%= site.url %>/category/vokaloidy/" data-balloon="😃 Вокалоиды" data-balloon-pos="right">Вокалоиды</a>
+                        </li>
+                      </ul>
+                    </li>
+                    <li>
+                      <a href="#" data-balloon="😃 Сервисы и API" data-balloon-pos="right"><i class="fa fa-cogs"></i> Сервисы и API</a>
+                      <ul class="sub-menu">
+                        <li>
+                          <a href="#!" style="display: none;" data-balloon="😃 2D Няшка на ваш сайт" data-balloon-pos="right">2D Няшка на ваш сайт</a>
+                        </li>
+                        <li>
+                          <a href="#!" style="display: none;" data-balloon="😃 Плеер с музыкой на ваш блог" data-balloon-pos="right">Плеер с музыкой на ваш блог</a>
+                        </li>
+                        <li>
+                          <a href="#!" style="display: none;" data-balloon="😃 Рандомные аниме цитаты на ваш блог" data-balloon-pos="right">Рандомные аниме цитаты на ваш блог</a>
+                        </li>
+                        <li>
+                          <a href="#!" style="display: none;" data-balloon="😃 Хостинг артов и картинок" data-balloon-pos="right">Хостинг артов и картинок</a>
+                        </li>
+                        <li>
+                          <a href="#!" data-balloon="😃 到Web站点开放接入（如YouTube，谷歌，LinkedIn，Netflix的&#8230;）" data-balloon-pos="right">对Web站点的访问打开</a>
+                        </li>
+                        <li>
+                          <a href="https://api.junior.moe/ipinforuv1.html">IP Whois / Информация об IP и расположение</a>
+                        </li>
+                        <li>
+                          <a href="https://api.junior.moe/ipinfocnv1.html">IP WHOIS请求事由的</a>
+                        </li>
+                      </ul>
+                    </li>
+                    <li>
+                      <a target="_blank" href="#!" style="display: none;" data-balloon="😃 Портфолио" data-balloon-pos="right"><i class="fa fa-address-card"></i> Портфолио</a>
+                    </li>
+                    <li>
+                      <a target="_blank" href="http://github.com/jun-dev" data-balloon="😃 Мой профиль на Github" data-balloon-pos="right"><i class="fa fa-github"></i> Github</a>
+                    </li>
+                    <li>
+                      <a target="_blank" href="http://shikimori.org/JuniorDEV" data-balloon="😃 Shikimori" data-balloon-pos="right">❤ Shikimori</a>
+                    </li>
+                    <li>
+                      <a target="_blank" href="http://gitee.com/jun-dev" data-balloon="😃 码云Gitee" data-balloon-pos="right"><i class="fa fa-code-branch"></i> 码云Gitee</a>
+                    </li>
+                    <li>
+                      <a href="<%= site.url %>/poiskovik-muzyki" data-balloon="😃 Скачать и слушать mp3" data-balloon-pos="right"><i class="fa fa-music"></i> MP3</a>
+                    </li>
+                  </ul>
+                </nav>
+              </div>
+            </div>
+          </header>
         </div>
-        <nav>
-          <ul class="flex flex-wrap text-xl">
-            <li class="mr-6">
-              <a class="text-gray-700 border-none hover:no-underline hover:text-gray-800" href="/"
-                >Home</a
-              >
-            </li>
-            <li class="mr-6">
-              <a
-                class="text-gray-700 border-none hover:no-underline hover:text-gray-800"
-                href="https://github.com/ixartz/Eleventy-Starter-Boilerplate"
-              >
-                GitHub
-              </a>
-            </li>
-          </ul>
-        </nav>
+        <div class="kratos-start kratos-hero-2">
+          <div class="kratos-overlay"></div>
+          <div class="kratos-cover kratos-cover_2 text-center" style="background-image: url(/assets/images/background.jpg);">
+            <div class="desc desc2 animate-box">
+              <a href="<%= site.url %>"><h2><%= title %></h2><br><span><%= site.description %></span></a>
+            </div>
+          </div>
+        </div>
+        <div id="kratos-blog-post" style="background:#f5f5f5">
+          <div id="container" class="container">
+            <div class="row">
+              <%- content %>
+            </div>
+
+            <!-- Right sidebar -->
+            <aside id="kratos-widget-area" class="col-md-4 hidden-xs hidden-sm scrollspy">
+              <div id="sidebar" class="affix-top">
+                <aside id="kratos_about-2" class="widget widget_kratos_about clearfix">
+                  <div itemscope="" itemtype="http://schema.org/Person">
+                    <meta itemprop="gender" content="Male">
+                    <meta itemprop="birthDate" content="July 24, 1997">
+                    <meta itemprop="jobTitle" content="Разработчик">
+                    <meta itemprop="email" content="mprog54@gmail.com">
+                    <meta itemprop="url" content="<%= site.url %>">
+                    <meta itemprop="memberOf" content="<%= site.athor %>">
+                    <meta itemprop="image" content="<%= site.url %>/assets/images/<%= site.athor %>.png">
+                    <div class="photo-background">
+                      <div class="photo-background" style="background:url(<%= site.url %>/assets/images/about.jpg) no-repeat center center;-webkit-background-size:cover;background-size:cover"></div>
+                    </div>
+                    <div class="photo-wrapper clearfix">
+                      <div class="photo-wrapper-tip text-center">
+                        <a href="<%= site.url %>/admin" rel="nofollow">
+                          <img class="about-photo" src="<%= site.url %>/assets/images/<%= site.athor %>.png" alt="<%= site.athor %>" />
+                        </a>
+                      </div>
+                    </div>
+                    <div class="textwidget">
+                      <p>
+                        <span class="name" itemprop="name">
+                          <link itemprop="sameAs" href="<%= site.url %>/about">
+                          <link itemprop="sameAs" href="https://twitter.com/mprog54">
+                          <link itemprop="sameAs" href="https://shikimori.org/JuniorDEV">
+                          JuniorDEV
+                        </span>
+                      </p>
+                      <p class="text-center">
+                        <br><b>TG:</b>  <a title="Телега ^_^" href="tg:@mprog54">@mprog54</a>
+                        <br><b>Email:</b>  <a title="Email" href="mailto:mprog54@gmail.com">mprog54@gmail.com</a>
+                      </p>
+                    </div>
+                  </div>
+                </aside>
+              </div>
+            </aside>
+
+          </div>
+        </div>
       </div>
 
-      <div class="text-xl py-5"><%- content %></div>
+      <footer>
+        <div id="footer">
+          <div class="cd-tool text-center">
+            <div style="bottom: 230px;" class="wechat-img">
+              <span id="online-count">
+                <span style="position: absolute; color: #ffffff; text-shadow: 1px 1px 3px #000; top: -6px; font-weight: bold; text-align: center;">0</span>
+                <span style="font-size: 16px; position: absolute; bottom: -21px;" class="fa fa-user"></span>
+              </span>
+            </div>
+            <div class="gotop-box">
+              <div class="gotop-btn"><span class="fa fa-chevron-up"></span>
+              </div>
+            </div>
+            <div class="search-box"> <span class="fa fa-search"></span>
+              <form class="search-form" role="search" method="get" id="searchform" action="<%= site.url %>/">
+                <input type="text" name="s" id="search" placeholder="Search..." style="display:none" />
+              </form>
+            </div>
+          </div>
+          <div class="container">
+            <div class="row">
+              <div class="col-md-6 col-md-offset-3 footer-list text-center">
+                <p class="kratos-social-icons"></p>
+                <p>
+                  <a href="<%= site.url %>/sitemap.xml">Sitemap</a>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
 
-      <div class="border-t border-gray-300 text-center py-8">
-        Made with <span role="img" aria-label="Love">♥</span> by
-        <a href="https://creativedesignsguru.com">CreativeDesignsGuru</a>
+    <div class="waifu">
+      <div class="waifu-tips"></div>
+      <canvas id="live2d" width="220" height="250" class="live2d"></canvas>
+      <div class="waifu-tool">
+        <span class="fa fa-home"></span>
+        <span class="fa fa-comments"></span>
+        <span class="fa fa-drivers-license-o"></span>
+        <span class="fa fa-street-view"></span>
+        <span class="fa fa-info-circle"></span>
+        <span class="fa fa-close"></span>
       </div>
     </div>
+
+    <script>
+    var visTimeout;if(window.CONFIG.favicon.visibilitychange){window.originTitle = document.title;document.addEventListener("visibilitychange", function() {if(document.hidden){$('[rel="icon"]').attr("href", window.CONFIG.favicon.hidden);document.title = window.CONFIG.favicon.hide_text;clearTimeout(visTimeout);} else {$('[rel="icon"]').attr("href", window.CONFIG.favicon.def);document.title = window.CONFIG.favicon.show_text + ' ' + window.originTitle;visTimeout = setTimeout(function() {document.title = window.originTitle;}, 2e3);}});}
+    </script>
+
+    <script src='https://cdn.jsdelivr.net/npm/jquery@2.1.4/dist/jquery.min.js?ver=2.1.4'></script>
+    <script src='https://cdn.jsdelivr.net/npm/bootstrap3@3.3.5/dist/js/bootstrap.min.js?ver=3.3'></script>
+    <script src='/assets/js/layer.min.js?ver=3.1.0'></script>
+    <script src='/assets/js/OwO.min.js?ver=1.0.1'></script>
+    <script src='/assets/js/pjax.min.js?ver=0.0.7'></script>
+    <script type='text/javascript'>
+      var xb = {"thome":"https:\/\/"+document.location.host+"\/assets\/images\/kratos-pjax-0.2.5","ctime":"01\/25\/2017 15:25:00","donate":"\u041d\u0430\u0433\u0440\u0430\u0434\u0430 \u0430\u0432\u0442\u043e\u0440\u0443","scan":"\u041f\u043e\u0434\u043d\u0438\u043c\u0438\u0442\u0435 \u043f\u043b\u0430\u0442\u0435\u0436","alipay":"http:\/\/"+document.location.host+"\/assets\/images\/kratos-pjax-0.2.5\/images\/alipayqr.png","wechat":"http:\/\/"+document.location.host+"\/assets\/images\/kratos-pjax-0.2.5\/images\/wechatpayqr.png","owo":"https:\/\/"+document.location.host+"\/assets\/images\/kratos-pjax-0.2.5","site_sh":"61"};
+    </script>
+    <script src='/assets/js/kratos.js?ver=0.2.5'></script>
+    <script src='/assets/js/live2d.js?ver=l2d'></script>
+    <script src='/assets/js/waifu-tips.js?ver=1.3'></script>
+    <script src='https://cdnjs.cat.net/ajax/libs/dplayer/1.6.1/DPlayer.min.js?ver=1.6.1'></script>
+    <script src='https://blog.junior.moe/wp-content/plugins/dplayer-for-wp/dplayer/init-dplayer.js?ver=1.0.0'></script>
+    <script>
+      var iframeLoad235 = '';(function(w, d){window.addEventListener('LazyLoad::Initialized', function (e) {// Get the instance and puts it in the lazyLoadInstance variable
+      lazyContent = e.detail.instance;}, false);var b = d.getElementsByTagName('body')[0];var s = d.createElement("script");var v = !("IntersectionObserver" in w) ? "8.17.0" : "10.19.0";s.async = true; // This includes the script as async. See the "recipes" section for more information about async loading of LazyLoad.
+      s.src = "https://cdn.jsdelivr.net/npm/vanilla-lazyload@" + v + "/dist/lazyload.min.js";
+      w.lazyLoadOptions = {elements_selector: ".b-lazy",callback_enter: function(e){iframeLoad235 = window.setTimeout(function(){if($(e).hasClass('loading')){console.info('Ошибка загрузки iFrame'); $(e).parent().parent().children('.info-overlay').addClass('error'); if(navigator.appName == 'Microsoft Internet Explorer') {$(e).document.execCommand('Stop');} else { window.stop();  $(e).stop();}}}, 10000);},callback_load: function(e){//console.info('Элемент загружен');
+      },callback_finish: function(e){clearTimeout(iframeLoad235);}};b.appendChild(s);}(window, document));
+    </script>
   </body>
 </html>
